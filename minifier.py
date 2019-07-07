@@ -12,12 +12,12 @@ print('Source path is: {}'.format(source))
 print('Destination path is: {}'.format(destination))
 
 def minimize_image(filename, source, dest):
-  print('Process image file.')
+  print('Process image file - {}'.format(filename))
   try:
     image = Image.open(os.path.join(source, filename))
     image.save(os.path.join(dest, filename), quality=50)
   except IOError:
-    print('Error, is not file.')
+    print('Error, {} - is not image.'.format(filename))
 
 def process_images(source, destination):
   if not os.path.exists(destination):
@@ -38,7 +38,9 @@ def process_images(source, destination):
       process_images(os.getcwd(), os.path.join(os.getcwd(), destination, path))
 
 def main():
+  os.system("say 'Start processing of passed images'")
   process_images(source, destination)
+  os.system("say 'Images have minified.'")
 
 if __name__ == "__main__":
   main()
